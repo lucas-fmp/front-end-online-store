@@ -8,7 +8,7 @@ import Checkout from './components/Checkout';
 
 function App() {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename={ process.env.PUBLIC_URL }>
       <Switch>
         <Route exact path="/" component={ Main } />
         <Route exact path="/product/:id" component={ ProductPage } />
