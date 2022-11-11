@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import { HiMinus, HiPlus } from 'react-icons/hi';
 
 export default class ProductCardCart extends Component {
   constructor() {
@@ -32,30 +33,50 @@ export default class ProductCardCart extends Component {
     const { id, title, price, thumbnail } = this.props;
     const { quantity } = this.state;
     return (
-      <div data-testid="product">
+      <div
+        data-testid="product"
+        className="h-fit py-8 flex flex-col lg:flex-row
+        gap-4 items-center justify-between"
+      >
         <img src={ thumbnail } alt={ title } />
-        <h3 data-testid="shopping-cart-product-name">{title}</h3>
-        <h4>{price}</h4>
-        <Link data-testid="product-detail-link" to={ `/product/${id}` }>Details</Link>
-        <button
-          type="button"
-          data-testid="product-increase-quantity"
-          onClick={ this.increaseQuantity }
+        <Link
+          data-testid="product-detail-link"
+          className="w-full text-center lg:w-1/4 xl:w-1/3 2xl:w-1/2"
+          to={ `/product/${id}` }
         >
-          +
-        </button>
-        <p data-testid="shopping-cart-product-quantity">
-          Quantidade:
-          {' '}
-          {quantity}
-        </p>
-        <button
-          type="button"
-          data-testid="product-decrease-quantity"
-          onClick={ this.decreaseQuantity }
-        >
-          -
-        </button>
+          <h3
+            data-testid="shopping-cart-product-name"
+            className="truncate"
+          >
+            {title}
+          </h3>
+        </Link>
+        <div className="flex gap-2">
+          <button
+            type="button"
+            data-testid="product-decrease-quantity"
+            onClick={ this.decreaseQuantity }
+            className="text-gray-400"
+          >
+            <HiMinus />
+          </button>
+          <p
+            data-testid="shopping-cart-product-quantity"
+            className="bg-gray-400 text-white rounded-full
+            w-6 h-6 flex justify-center items-center"
+          >
+            {quantity}
+          </p>
+          <button
+            type="button"
+            data-testid="product-increase-quantity"
+            onClick={ this.increaseQuantity }
+            className="text-gray-400"
+          >
+            <HiPlus />
+          </button>
+        </div>
+        <p className="text-gray-600">{`R$ ${price.toFixed(2).replace('.', ',')}`}</p>
       </div>
     );
   }

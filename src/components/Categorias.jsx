@@ -20,15 +20,21 @@ export default class Categorias extends Component {
     const { onClickCategoryButton } = this.props;
     const { categorias } = this.state;
     return (
-      <div>
-        {categorias.map((categoria) => (
-          <CategoryCard
-            category={ categoria.name }
-            key={ categoria.name }
-            id={ categoria.id }
-            onClickCategoryButton={ onClickCategoryButton }
-          />
-        ))}
+      <div
+        className="grid grid-cols-1 divide-y-2 p-8 pt-24
+        min-w-fit w-auto shadow-lg shadow-gray-300 h-fit"
+      >
+        <h2 className="text-xl font-bold pb-4">Categorias</h2>
+        <div className="flex flex-col pt-4">
+          {categorias.map((categoria) => (
+            <CategoryCard
+              category={ categoria.name }
+              key={ categoria.name }
+              id={ categoria.id }
+              onClickCategoryButton={ onClickCategoryButton }
+            />
+          ))}
+        </div>
       </div>
     );
   }
