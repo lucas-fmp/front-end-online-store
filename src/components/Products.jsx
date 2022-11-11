@@ -8,15 +8,38 @@ export default class Products extends Component {
     if (isFiltered) return filteredProducts;
     if (searched && products.length === 0) {
       return (
-        <div>Nenhum produto foi encontrado</div>
+        <div
+          className="flex flex-col gap-4 pt-96"
+        >
+          <h3 className="text-[#5FD149] text-4xl justify-center text-center">
+            NENHUM PRODUTO
+            <br />
+            FOI ENCONTRADO
+          </h3>
+          <p className="text-[#94979D] text-xl text-center">
+            Digite outro termo de pesquisa ou
+            <br />
+            escolha uma categoria
+          </p>
+        </div>
       );
     }
     if (searched) return products;
     return (
       <div
         data-testid="home-initial-message"
+        className="flex flex-col gap-4 pt-96"
       >
-        Digite algum termo de pesquisa ou escolha uma categoria.
+        <h3 className="text-[#5FD149] text-4xl justify-center text-center">
+          VOCÊ AINDA NÃO
+          <br />
+          REALIZOU UMA BUSCA
+        </h3>
+        <p className="text-[#94979D] text-xl text-center">
+          Digite algum termo de pesquisa ou
+          <br />
+          escolha uma categoria
+        </p>
       </div>
     );
   };
@@ -40,31 +63,46 @@ export default class Products extends Component {
   render() {
     const result = this.validationProducts();
     return (
-      <div>
-        {
-          Array.isArray(result) ? result
-            .map(({ id, title, price, thumbnail, shipping }) => (
-              <div key={ id }>
-                <ProductCard
-                  key={ id }
-                  id={ id }
-                  title={ title }
-                  price={ price }
-                  thumbnail={ thumbnail }
-                  shipping={ shipping }
-                />
-                <button
-                  type="button"
-                  data-testid="product-add-to-cart"
-                  id={ id }
-                  onClick={ this.addingProductToCart }
-                >
-                  Adicionar ao carrinho
-                </button>
-              </div>
-            )) : result
-        }
-      </div>
+
+      Array.isArray(result) ? (
+        <div
+          className="w-full bg-[#ECECEC] grid
+          grid-cols-1 gap-8 lg:grid-cols-2 xl:grid-cols-3 p-8 pt-28"
+        >
+          {
+            result
+              .map(({ id, title, price, thumbnail, shipping }) => (
+                <div key={ id } className="relative hover:scale-105 duration-300">
+                  <ProductCard
+                    key={ id }
+                    id={ id }
+                    title={ title }
+                    price={ price }
+                    thumbnail={ thumbnail }
+                    shipping={ shipping }
+                  />
+                  <button
+                    type="button"
+                    data-testid="product-add-to-cart"
+                    id={ id }
+                    onClick={ this.addingProductToCart }
+                    className="absolute font-bold left-4 right-4 py-1 mx-auto
+                      bottom-4 bg-[#31C28D] text-white
+                      rounded-md hover:bg-[#036B52]"
+                  >
+                    Adicionar ao carrinho
+                  </button>
+                </div>
+              ))
+          }
+        </div>
+      ) : (
+        <div className="w-full bg-[#ECECEC]">
+          {
+            result
+          }
+        </div>
+      )
     );
   }
 }

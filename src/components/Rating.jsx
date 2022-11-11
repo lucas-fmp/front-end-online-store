@@ -36,107 +36,116 @@ handleClick = () => {
     const { email, comment } = this.state;
 
     return (
-      <section>
-        <form>
-          <label htmlFor="emailField">
-            Email:
-            <input
-              name="email"
-              data-testid="product-detail-email"
-              type="email"
-              value={ email }
-              onChange={ this.handleChange }
+      <form className="flex flex-col justify-center items-center bg-white p-6">
+        <h4 className="text-lg font-bold pb-6">Avaliações</h4>
+        <div className="px-4 flex flex-col gap-4 w-2/6 min-w-fit">
+          <div className="flex justify-between items-center">
+            <label htmlFor="emailField" className="w-3/4 flex">
+              <input
+                name="email"
+                data-testid="product-detail-email"
+                type="email"
+                value={ email }
+                onChange={ this.handleChange }
+                placeholder="Email"
+                className="p-1 border border-gray-500
+                focus:border-gray-600 w-full"
+              />
+            </label>
+            <div className="w-1/5 flex form-check justify-between gap-1">
+              <input
+                id="1"
+                name="rating"
+                data-testid="1-rating"
+                type="radio"
+                onChange={ this.handleChange }
+                className="appearance-none rounded-full h-4 w-4
+                border border-gray-500 checked:bg-[#31C28D]
+                 checked:border-[#31C28D] focus:outline-none transition
+                 duration-200 cursor-pointer"
+              />
 
-            />
-          </label>
+              <input
+                name="rating"
+                id="2"
+                data-testid="2-rating"
+                type="radio"
+                value="2"
+                onChange={ this.handleChange }
+                className="appearance-none rounded-full h-4 w-4
+                border border-gray-500 checked:bg-[#31C28D]
+                 checked:border-[#31C28D] focus:outline-none transition
+                 duration-200 cursor-pointer"
+              />
 
-          <label htmlFor="1-rating">
-            <span> 1 </span>
-            <input
-              id="1"
-              name="rating"
-              data-testid="1-rating"
-              type="radio"
-              onChange={ this.handleChange }
+              <input
+                onChange={ this.handleChange }
+                name="rating"
+                id="3"
+                data-testid="3-rating"
+                type="radio"
+                value="3"
+                className="appearance-none rounded-full h-4 w-4
+                border border-gray-500 checked:bg-[#31C28D]
+                 checked:border-[#31C28D] focus:outline-none transition
+                 duration-200 cursor-pointer"
+              />
 
-            />
-          </label>
+              <input
+                onChange={ this.handleChange }
+                id="4"
+                name="rating"
+                data-testid="4-rating"
+                type="radio"
+                value="4"
+                className="appearance-none rounded-full h-4 w-4
+                border border-gray-500 checked:bg-[#31C28D]
+                 checked:border-[#31C28D] focus:outline-none transition
+                 duration-200 cursor-pointer"
+              />
 
-          <label htmlFor="2-rating">
-            <span> 2 </span>
-            <input
-              name="rating"
-              id="2"
-              data-testid="2-rating"
-              type="radio"
-              value="2"
-              onChange={ this.handleChange }
-            />
-          </label>
+              <input
+                onChange={ this.handleChange }
+                name="rating"
+                id="5"
+                data-testid="5-rating"
+                type="radio"
+                value="5"
+                className="appearance-none rounded-full h-4 w-4
+                border border-gray-500 checked:bg-[#31C28D]
+                 checked:border-[#31C28D] focus:outline-none transition
+                 duration-200 cursor-pointer"
+              />
+            </div>
 
-          <label htmlFor="3-rating">
-            <span> 3 </span>
-            <input
-              onChange={ this.handleChange }
-              name="rating"
-              id="3"
-              data-testid="3-rating"
-              type="radio"
-              value="3"
-            />
-
-          </label>
-
-          <label htmlFor="4-rating">
-            <span> 4 </span>
-            <input
-              onChange={ this.handleChange }
-              id="4"
-              name="rating"
-              data-testid="4-rating"
-              type="radio"
-              value="4"
-            />
-          </label>
-
-          <label htmlFor="5-rating">
-            <span> 5 </span>
-            <input
-              onChange={ this.handleChange }
-              name="rating"
-              id="5"
-              data-testid="5-rating"
-              type="radio"
-              value="5"
-            />
-          </label>
+          </div>
 
           <label htmlFor="commentField">
             <textarea
               name="comment"
               value={ comment }
               data-testid="product-detail-evaluation"
-              placeholder="Deixe o seu comentário"
+              placeholder="Mensagem (opcional)"
               rows="5"
               cols="33"
               onChange={ this.handleChange }
+              className="p-1 border border-gray-500 focus:border-gray-600 w-full"
             />
           </label>
+        </div>
 
-          <button
-            onClick={ this.handleClick }
-            type="button"
-            data-testid="submit-review-btn"
-          >
-            {' '}
-            Enviar
-            {' '}
+        <button
+          onClick={ this.handleClick }
+          type="button"
+          data-testid="submit-review-btn"
+          className="mt-2 px-12 font-bold py-2 mx-auto
+          bottom-4 bg-[#31C28D] text-white
+          rounded-sm hover:bg-[#036B52] hover:scale-105"
+        >
+          Avaliar
+        </button>
 
-          </button>
-
-        </form>
-
-      </section>
+      </form>
     );
   }
 }
